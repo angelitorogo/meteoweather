@@ -1,0 +1,55 @@
+:root {
+  /* FONDO GENERAL */
+  --bg-main: #0F1B2B;
+
+  /* CARDS / BLOQUES */
+  --bg-card: #16263A;
+  --bg-card-hover: #1C2F46;
+  --bg-card-border: #223B56;
+
+  /* NAVBAR / MENÚ PRINCIPAL */
+  --menu-bg: #142235;
+  --menu-bg-hover: #1C2F49;
+  --menu-border: #2A4463;
+
+  /* SUBMENÚS / DROPDOWNS */
+  --submenu-bg: #1A2D43;
+  --submenu-bg-hover: #223854;
+  --submenu-border: #2E4A6B;
+
+  /* TEXTO */
+  --text-primary: #EAF4FF;
+  --text-secondary: #AEC4D6;
+  --text-muted: #7B8FA3;
+  --text-hover: #FFFFFF;
+
+  /* COLORES “METEO” DE ACCENTO */
+  --accent-sun: #FFCC33;  /* Soleado */
+  --accent-cloud: #8FAECC;/* Nubes */
+  --accent-rain: #4DA3FF; /* Lluvia */
+  --accent-storm: #FF5959;/* Tormenta */
+  --accent-wind: #9FE0FF; /* Viento */
+
+  /* BOTONES */
+  --btn-primary-bg: #FFCC33;
+  --btn-primary-text: #0F1B2B;
+  --btn-primary-hover: #FFD95A;
+
+  --btn-secondary-bg: transparent;
+  --btn-secondary-text: #EAF4FF;
+  --btn-secondary-border: #2A4463;
+  --btn-secondary-hover-bg: #1C2F46;
+
+  /* BORDES Y SOMBRAS GENERALES */
+  --border-soft: 1px solid rgba(255, 255, 255, 0.06);
+  --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+  /* RADIUS */
+  --radius-sm: 0.6rem;
+  --radius-md: 1.2rem;
+  --radius-lg: 1.8rem;
+
+  /* ALTURAS BÁSICAS LAYOUT */
+  --navbar-height: 6rem;
+  --footer-height: 5rem;
+}

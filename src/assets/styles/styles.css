@@ -1,0 +1,31 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
+/* Fondo general de la app Meteo Weather */
+body {
+  background: radial-gradient(circle at top, #1a2b45 0, #0F1B2B 45%, #050911 100%);
+  color: var(--text-primary);
+}
+
+/* Por si usas un contenedor principal tipo shell */
+.app-root {
+  min-height: 100vh;
+  background-color: transparent;
+  color: var(--text-primary);
+}
+
+/* Ejemplo genérico de card reutilizable */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: var(--bg-card-border);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Links genéricos */
+a {
+  color: var(--accent-rain);
+}
+a:hover {
+  color: var(--accent-sun);
+}
