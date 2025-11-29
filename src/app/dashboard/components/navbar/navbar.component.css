@@ -1,0 +1,378 @@
+/* HEADER */
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(16px);
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 27, 43, 0.96),
+    rgba(15, 27, 43, 0.85),
+    transparent
+  );
+  border-bottom: 1px solid rgba(42, 68, 99, 0.7);
+}
+
+.dashboard-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.2rem 0;
+}
+
+/* BRAND */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  cursor: pointer;
+}
+
+.brand__logo {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 1.4rem;
+  background: radial-gradient(circle at 30% 20%, #FFCC33, #FF8C33);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0F1B2B;
+  box-shadow: 0 0 18px rgba(255, 204, 51, 0.4);
+  font-size: 1.8rem;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand__title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.brand__subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* NAV DESKTOP */
+.nav-links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links__item {
+  position: relative;
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.nav-links__item:hover {
+  background: rgba(22, 38, 58, 0.9);
+  border-color: rgba(42, 68, 99, 0.9);
+  color: var(--text-hover);
+  transform: translateY(-1px);
+}
+
+.nav-links__item--active {
+  background: rgba(10, 154, 255, 0.14);
+  border-color: rgba(77, 163, 255, 0.9);
+  color: #e9f3ff;
+  box-shadow: 0 0 22px rgba(77, 163, 255, 0.25);
+}
+
+/* HEADER ACTIONS */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-left: 2rem;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.2rem;
+  font-size: 1.3rem;
+  background: rgba(22, 38, 58, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(42, 68, 99, 0.9);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.12s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(28, 47, 70, 0.95);
+  border-color: var(--accent-rain);
+  color: var(--text-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost i {
+  font-size: 1.4rem;
+}
+
+.btn-circle {
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(42, 68, 99, 0.9);
+  background: rgba(20, 34, 53, 0.9);
+  color: var(--accent-sun);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.12s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-circle:hover {
+  background: rgba(28, 47, 73, 0.95);
+  border-color: var(--accent-sun);
+  box-shadow: 0 0 16px rgba(255, 204, 51, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-circle i {
+  font-size: 1.5rem;
+}
+
+/* USER CHIP (Mi cuenta) */
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.4rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(77, 163, 255, 0.7);
+  background: radial-gradient(circle at top left, rgba(10, 154, 255, 0.25), rgba(20, 34, 53, 0.95));
+  color: var(--text-primary);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.12s ease,
+    box-shadow 0.2s ease;
+}
+
+.user-chip:hover {
+  background: radial-gradient(circle at top left, rgba(10, 154, 255, 0.45), rgba(20, 34, 53, 1));
+  border-color: rgba(77, 163, 255, 1);
+  box-shadow: 0 0 18px rgba(77, 163, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.user-chip__avatar {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: rgba(13, 102, 201, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eaf4ff;
+  font-size: 1.5rem;
+}
+
+.user-chip__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+.user-chip__label {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.user-chip__hint {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Botón hamburguesa (solo móvil) */
+.btn-burger {
+  display: none;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(42, 68, 99, 0.9);
+  background: rgba(20, 34, 53, 0.9);
+  color: var(--text-primary);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.12s ease;
+}
+
+.btn-burger:hover {
+  background: rgba(28, 47, 73, 0.95);
+  border-color: var(--accent-rain);
+  transform: translateY(-1px);
+}
+
+.btn-burger i {
+  font-size: 1.8rem;
+}
+
+/* NAV MÓVIL */
+.nav-mobile {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.22s ease-out, border-color 0.22s ease-out;
+  border-bottom: 0 solid transparent;
+}
+
+.nav-mobile--open {
+  max-height: 300px;
+  border-bottom: 1px solid rgba(46, 74, 107, 0.8);
+}
+
+.nav-mobile__inner {
+  padding: 0.6rem 0 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.nav-mobile__item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.2rem;
+  background: var(--submenu-bg);
+  color: var(--text-secondary);
+  border: 1px solid rgba(46, 74, 107, 0.6);
+  cursor: pointer;
+  font-size: 1.35rem;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+}
+
+.nav-mobile__item:hover {
+  background: var(--submenu-bg-hover);
+  color: var(--text-hover);
+  transform: translateY(-1px);
+}
+
+.nav-mobile__item--active {
+  background: rgba(10, 154, 255, 0.16);
+  border-color: rgba(77, 163, 255, 0.9);
+  color: #eef6ff;
+}
+
+.nav-mobile__item i {
+  font-size: 1.5rem;
+}
+
+/* Estilo ligero distinto para el botón Mi cuenta en móvil */
+.nav-mobile__item--account {
+  margin-top: 0.4rem;
+  justify-content: flex-start;
+  background: radial-gradient(circle at left, rgba(10, 154, 255, 0.22), rgba(26, 45, 67, 0.95));
+  border-color: rgba(77, 163, 255, 0.85);
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .btn-burger {
+    display: inline-flex;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .brand__title {
+    font-size: 1.6rem;
+  }
+
+  .brand__subtitle {
+    font-size: 1rem;
+  }
+
+  .dashboard-main {
+    padding-top: 1.4rem;
+  }
+
+  /* En pantallas pequeñas reducimos un poco el chip */
+  .user-chip__hint {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-header__inner {
+    gap: 1.2rem;
+  }
+
+  .brand__title {
+    font-size: 1.4rem;
+  }
+
+  .brand__subtitle {
+    display: none;
+  }
+
+  .btn-ghost span {
+    display: none;
+  }
+
+  .btn-ghost {
+    padding-inline: 0.8rem;
+  }
+
+  /* Compactar un poco el chip de usuario */
+  .user-chip__text {
+    display: none; /* Solo icono en móviles muy pequeños */
+  }
+
+  .user-chip {
+    padding-inline: 0.8rem;
+  }
+
+  .dashboard-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

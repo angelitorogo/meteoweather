@@ -9,9 +9,19 @@ import { Observable } from 'rxjs';
 export class LocationService {
   constructor(private http: HttpClient) {}
 
+  private ciudad: string = '';
+
   getUserCity(): Observable<string> {
     return this.http.get<any>('https://ipapi.co/json/').pipe(
       map((res) => res.city || 'Ubicación desconocida')
     );
+  }
+
+  setCity(city: string) {
+    this.ciudad = city; 
+  }
+
+  get city() {
+    return this.ciudad;
   }
 }

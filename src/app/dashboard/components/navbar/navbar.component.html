@@ -1,0 +1,129 @@
+<!-- NAVBAR -->
+  <header class="dashboard-header">
+    <div class="contenedor dashboard-header__inner">
+      <!-- Branding -->
+      <div class="brand" (click)="onNavigate()">
+        <div class="brand__logo">
+          <i class="bi bi-cloud-sun"></i>
+        </div>
+        <div class="brand__text">
+          <span class="brand__title">Meteo Weather</span>
+          <span class="brand__subtitle">Tu clima, al detalle</span>
+        </div>
+      </div>
+
+      <!-- Navegación desktop -->
+      <nav class="nav-links">
+        <a
+          class="nav-links__item nav-links__item--active"
+          routerLink="/dashboard/home"
+          routerLinkActive="nav-links__item--active"
+          (click)="onNavigate()"
+        >
+          Hoy
+        </a>
+        <a
+          class="nav-links__item"
+          routerLink="/dashboard/weekly"
+          routerLinkActive="nav-links__item--active"
+          (click)="onNavigate()"
+        >
+          7 días
+        </a>
+        <a
+          class="nav-links__item"
+          routerLink="/dashboard/maps"
+          routerLinkActive="nav-links__item--active"
+          (click)="onNavigate()"
+        >
+          Mapas
+        </a>
+        <a
+          class="nav-links__item"
+          routerLink="/dashboard/favorites"
+          routerLinkActive="nav-links__item--active"
+          (click)="onNavigate()"
+        >
+          Favoritos
+        </a>
+      </nav>
+
+      <!-- Zona derecha: ciudad actual / usuario / etc -->
+      <div class="header-actions">
+        <!-- Ciudad -->
+        <button class="btn-ghost">
+          <i class="bi bi-geo-alt"></i>
+          <span>{{ locationService.city }}</span>
+        </button>
+
+        <!-- Botón modo/tema (placeholder) -->
+        <button class="btn-circle">
+          <i class="bi bi-brightness-high"></i>
+        </button>
+
+        <!-- Mi cuenta -->
+        <button class="btn-ghost" (click)="onAccountClick()">
+          <div class="user-chip__avatar">
+            <i class="bi bi-person"></i>
+          </div>
+          <div class="user-chip__text">
+            <!--<span class="user-chip__label">Mi cuenta</span>-->
+            <span class="user-chip__label">Inicia sesión</span>
+          </div>
+        </button>
+
+        <!-- Botón menú móvil -->
+        <button class="btn-burger" (click)="toggleMenu()">
+          <i class="bi" [ngClass]="isMenuOpen ? 'bi-x' : 'bi-list'"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil -->
+    <div class="nav-mobile" [class.nav-mobile--open]="isMenuOpen">
+      <div class="nav-mobile__inner contenedor">
+        <a
+          class="nav-mobile__item"
+          routerLink="/dashboard/home"
+          routerLinkActive="nav-mobile__item--active"
+          (click)="onNavigate()"
+        >
+          <i class="bi bi-sun"></i>
+          <span>Hoy</span>
+        </a>
+        <a
+          class="nav-mobile__item"
+          routerLink="/dashboard/weekly"
+          routerLinkActive="nav-mobile__item--active"
+          (click)="onNavigate()"
+        >
+          <i class="bi bi-calendar-week"></i>
+          <span>7 días</span>
+        </a>
+        <a
+          class="nav-mobile__item"
+          routerLink="/dashboard/maps"
+          routerLinkActive="nav-mobile__item--active"
+          (click)="onNavigate()"
+        >
+          <i class="bi bi-map"></i>
+          <span>Mapas</span>
+        </a>
+        <a
+          class="nav-mobile__item"
+          routerLink="/dashboard/favorites"
+          routerLinkActive="nav-mobile__item--active"
+          (click)="onNavigate()"
+        >
+          <i class="bi bi-heart"></i>
+          <span>Favoritos</span>
+        </a>
+
+        <!-- Mi cuenta en móvil -->
+        <button class="nav-mobile__item nav-mobile__item--account" (click)="onAccountClick()">
+          <i class="bi bi-person-circle"></i>
+          <span>Mi cuenta</span>
+        </button>
+      </div>
+    </div>
+  </header>
