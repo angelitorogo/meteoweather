@@ -370,10 +370,19 @@ body {
 
 
 .contenedor {
-  width: 95%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
+
+@media (max-width: 600px) {
+  .contenedor {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
 img {
   max-width: 100%;
   display: block;

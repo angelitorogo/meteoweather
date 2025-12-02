@@ -1,11 +1,11 @@
 // src/app/features/contact/contact.component.ts
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MailService } from '../../services/mail.service';
 import { environment } from '../../../../environments/environment';
 import { CookiePreferencesService } from '../../services/generales/cookie-preferences.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MailService } from '../../services/funcionales/mail.service';
 
 @Component({
   selector: 'app-contact',

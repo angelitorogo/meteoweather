@@ -1,0 +1,1106 @@
+.home {
+  padding: 2.4rem 0 3.2rem;
+  color: var(--text-primary);
+}
+
+.home__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ESTADOS */
+
+.home__loading,
+.home__error,
+.home__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-card {
+  width: 100%;
+  border-radius: 1.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  padding: 1.8rem 2rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* GRID PRINCIPAL CUANDO HAY DATOS */
+
+.home__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr);
+  grid-auto-rows: auto;
+  gap: 2rem;
+}
+
+.home-card--main {
+  grid-row: span 2;
+  background: radial-gradient(circle at top left, rgba(255,204,51,0.08), transparent 55%),
+              radial-gradient(circle at bottom right, rgba(77,163,255,0.08), transparent 55%),
+              var(--bg-card);
+}
+
+/* CARD PRINCIPAL */
+
+.home-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.4rem;
+  align-items: flex-start;
+  margin-bottom: 1.4rem;
+}
+
+.home-card__location-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.home-card__city {
+  font-size: 2.4rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 2rem;
+}
+
+.home-card__sub-city {
+  font-size:  1.3rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.home-card__country {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}
+
+.home-card__altitude {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.home-card__subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.home-card__icon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.home-card__icon i {
+  font-size: 3rem;
+  color: var(--accent-sun);
+  text-shadow: 0 0 18px rgba(255, 204, 51, 0.6);
+}
+
+.home-card__description {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}
+
+/* TEMP BLOQUE */
+
+.home-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.home-card__temp-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.temp-main {
+  font-size: 4.4rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+.temp-feels {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+}
+
+/* META (HUMEDAD, VIENTO, PRESIÓN) */
+
+.home-card__meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.meta-item {
+  padding: 1rem 1.2rem;
+  border-radius: 1.2rem;
+  background: rgba(20, 34, 53, 0.9);
+  border: 1px solid rgba(42, 68, 99, 0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.meta-label {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.meta-value {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.meta-value i {
+  font-size: 1.4rem;
+  color: var(--accent-rain);
+}
+
+/* bloque min/max bajo la temperatura principal */
+.temp-minmax {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 1.2rem;
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}
+
+.temp-minmax__item i {
+  margin-right: 0.4rem;
+}
+
+/* el meta-item de "Hoy" quedará alineado con los otros */
+.meta-item .bi-thermometer-half {
+  margin-right: 0.4rem;
+}
+
+/* CARD SECUNDARIA: AMANECER / ATARDECER */
+
+.home-card--secondary {
+  background: var(--submenu-bg);
+  border-color: var(--submenu-border);
+}
+
+.home-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.sun-title {
+  font-size: 1.4rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.sun-block {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.sun-block__icon {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 34, 53, 0.9);
+}
+
+.sun-block__icon--sunrise {
+  color: var(--accent-sun);
+}
+
+.sun-block__icon--sunset {
+  color: var(--accent-storm);
+}
+
+.sun-block__label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+
+.sun-block__time {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+}
+
+.home-card__hint {
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* CARD RAW / DEBUG */
+
+.home-card--raw {
+  max-height: 280px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-card__row--title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.home-card__raw-title {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-secondary);
+}
+
+.home-card__raw-tag {
+  font-size: 1.05rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent-rain);
+  color: var(--accent-rain);
+}
+
+.home-card__raw-json {
+  flex: 1;
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border-radius: 1.2rem;
+  background: rgba(5, 9, 17, 0.85);
+  font-size: 1.1rem;
+  overflow: auto;
+}
+
+/* ================================
+   PRONÓSTICO SEMANAL
+   ================================ */
+
+.home-card--weekly {
+  background: var(--bg-card);
+  border-radius: 1.6rem;
+  border: 1px solid var(--bg-card-border, rgba(34, 59, 86, 0.9));
+  padding: 1.6rem 1.8rem 1.8rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Cabecera de la sección semanal */
+.home-card__weekly-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.home-card__weekly-title {
+  font-size: 1.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.home-card__weekly-subtitle {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  margin: 0.2rem 0 0;
+}
+
+/* Scroll horizontal de días */
+.home-card__weekly-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  margin-top: 0.4rem;
+  padding-top: 1px;
+}
+
+.home-card__weekly-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.home-card__weekly-scroll::-webkit-scrollbar-track {
+  background: rgba(15, 27, 43, 0.8);
+}
+
+.home-card__weekly-scroll::-webkit-scrollbar-thumb {
+  background: rgba(77, 163, 255, 0.6);
+  border-radius: 999px;
+}
+
+/* Tarjeta de cada día */
+.week-day {
+  min-width: 9rem;
+  max-width: 10rem;
+  flex: 0 0 auto;
+  border-radius: 1.2rem;
+  padding: 0.9rem 1rem;
+  background: radial-gradient(circle at top, #1c2c42 0, #101a28 50%, #0b101b 100%);
+  border: 1px solid rgba(46, 74, 107, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: var(--text-secondary);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.week-day--today {
+  border-color: rgba(255, 204, 51, 0.95);
+  box-shadow: 0 0 24px rgba(255, 204, 51, 0.35);
+  background: radial-gradient(circle at top, #2b2430 0, #171325 45%, #0b101b 100%);
+}
+
+.week-day__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.week-day__label {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.week-day__date {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+}
+
+.week-day__temps {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.week-day__max {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--accent-sun);
+}
+
+.week-day__min {
+  font-size: 1.4rem;
+  color: var(--accent-cloud);
+}
+
+/* Barra decorativa inferior */
+.week-day__bar {
+  margin-top: 0.4rem;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(11, 18, 30, 0.9);
+  overflow: hidden;
+}
+
+.week-day__bar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(77, 163, 255, 0.15),
+    rgba(255, 204, 51, 0.65),
+    rgba(255, 89, 89, 0.8)
+  );
+}
+
+/* Responsive: que respire bien en móvil */
+@media (max-width: 600px) {
+  .home-card--weekly {
+    padding-inline: 1.2rem;
+  }
+
+  .week-day {
+    min-width: 8.4rem;
+  }
+
+  .home-card__weekly-title {
+    font-size: 1.6rem;
+  }
+
+  .home-card__weekly-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* ESTADOS ESPECIALES */
+
+.home-card--error {
+  max-width: 480px;
+  text-align: center;
+  color: var(--accent-storm);
+  border-color: rgba(255, 89, 89, 0.8);
+}
+
+.home-card--error i {
+  font-size: 2.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.home-card--empty {
+  max-width: 480px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.home-card--empty i {
+  font-size: 2.2rem;
+  color: var(--accent-rain);
+  margin-bottom: 0.6rem;
+}
+
+/* SKELETONS */
+
+.home-card--skeleton {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton {
+  border-radius: 0.8rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.04) 80%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shine 1.2s ease-in-out infinite;
+}
+
+.skeleton__title {
+  width: 40%;
+  height: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.skeleton__temp {
+  width: 28%;
+  height: 3.6rem;
+  margin-bottom: 1.4rem;
+}
+
+.skeleton__row {
+  width: 100%;
+  height: 5rem;
+}
+
+@keyframes skeleton-shine {
+  0% {
+    background-position: -50% 0;
+  }
+  100% {
+    background-position: 150% 0;
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .home__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-card--main {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .home {
+    padding-top: 1.6rem;
+  }
+
+  .home-card {
+    padding: 1.6rem 1.4rem;
+  }
+
+  .home-card__meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- CONDICIONES DEL DÍA (METRICS CARD) --- */
+
+.home-card--metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.metrics-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.metrics-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.metrics-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.metric-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1.6rem;
+  background: rgba(15, 27, 43, 0.85);
+  border: 1px solid rgba(42, 68, 99, 0.7);
+}
+
+.metric-icon {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.7rem;
+}
+
+/* Iconos con colores según tipo */
+.metric-icon--uv {
+  background: radial-gradient(circle at 30% 20%, #FFCC33, #FF8C33);
+  color: #0F1B2B;
+}
+
+.metric-icon--rain {
+  background: radial-gradient(circle at 30% 20%, #4DA3FF, #2563EB);
+  color: #EAF4FF;
+}
+
+.metric-icon--amount {
+  background: radial-gradient(circle at 30% 20%, #22C55E, #15803D);
+  color: #EAF4FF;
+}
+
+.metric-icon--clouds {
+  background: radial-gradient(circle at 30% 20%, #8FAECC, #475569);
+  color: #0F172A;
+}
+
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.metric-label {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.metric-main {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.metric-helper {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+}
+
+/* Chip UV */
+
+.metric-chip {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.3rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Diferentes niveles UV */
+.uv-badge--none {
+  background: rgba(148, 163, 184, 0.2);
+  color: var(--text-secondary);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.uv-badge--low {
+  background: rgba(34, 197, 94, 0.16);
+  color: #bbf7d0;
+  border: 1px solid rgba(22, 163, 74, 0.7);
+}
+
+.uv-badge--moderate {
+  background: rgba(234, 179, 8, 0.15);
+  color: #fef9c3;
+  border: 1px solid rgba(202, 138, 4, 0.7);
+}
+
+.uv-badge--high {
+  background: rgba(249, 115, 22, 0.16);
+  color: #ffedd5;
+  border: 1px solid rgba(234, 88, 12, 0.7);
+}
+
+.uv-badge--very-high,
+.uv-badge--extreme {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fee2e2;
+  border: 1px solid rgba(220, 38, 38, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card "Indicadores del día" */
+.home-card--today {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.today-title {
+  font-size: 1.4rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.today-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.today-item {
+  padding: 1rem 1.2rem;
+  border-radius: 1.2rem;
+  background: rgba(22, 38, 58, 0.95);
+  border: 1px solid rgba(42, 68, 99, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.today-item__header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.today-item__header i {
+  font-size: 1.4rem;
+}
+
+.today-item__label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.today-item__value-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.today-item__value {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.today-item__badge {
+  font-size: 1.1rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 204, 51, 0.14);
+  color: var(--accent-sun);
+  border: 1px solid rgba(255, 204, 51, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.today-item__badge--soft {
+  background: rgba(143, 174, 204, 0.16);
+  color: var(--accent-cloud);
+  border-color: rgba(143, 174, 204, 0.5);
+}
+
+.today-item__bar {
+  margin-top: 0.2rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: rgba(10, 16, 28, 0.9);
+  overflow: hidden;
+}
+
+.today-item__bar-inner {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #FFCC33, #FF8C33);
+  transition: width 0.25s ease-out;
+}
+
+.today-item__bar-inner--rain {
+  background: linear-gradient(90deg, #4DA3FF, #9FE0FF);
+}
+
+.today-item__bar-inner--clouds {
+  background: linear-gradient(90deg, #8FAECC, #4D6A8A);
+}
+
+/* Ajustes responsive */
+@media (max-width: 700px) {
+  .today-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ============================
+   SECCIÓN ASTRONÓMICA (FULL WIDTH)
+   ============================ */
+
+.astro-card {
+  padding: 2rem 2.2rem;
+  border-radius: 1.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.astro-title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.astro-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 1.6rem;
+}
+
+.astro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.astro-item {
+  background: rgba(20, 34, 53, 0.9);
+  border: 1px solid rgba(42, 68, 99, 0.85);
+  border-radius: 1.4rem;
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.astro-icon {
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-sun);
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.astro-label {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.astro-value {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-left: 2rem;
+}
+
+/* ==============================
+   SECCIÓN ASTRONÓMICA (FASE LUNAR)
+   ============================== */
+
+.home-card--astro {
+  background: var(--bg-card);
+  border-color: var(--bg-card-border);
+  display: flex;
+  padding: 1.6rem 2rem;
+}
+
+.astro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.astro__left {
+  flex: 1.4;
+}
+
+.astro__right {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  justify-content: flex-end;
+}
+
+/* Bloque principal del icono + textos */
+
+.astro__moon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* 🔵 Luna “real” usando máscara */
+
+.astro__moon-circle {
+  --moon-cover: 0; /* 0 = llena, 1 = nueva */
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.astro__moon-circle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.astro__moon-core {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 30% 30%, #f9fafb 0, #e5e7eb 45%, #cbd5f5 60%, #94a3b8 75%, #020617 100%);
+  box-shadow:
+    0 0 18px rgba(148, 163, 184, 0.9),
+    0 0 40px rgba(15, 23, 42, 0.9);
+  overflow: hidden;
+}
+
+/* Capa de sombra que tapa la luna según la fase.
+   scaleX va de 0 (llena) a 1 (nueva).
+   El origen (izquierda/derecha) se controla con clases .moon--waxing / .moon--waning
+*/
+
+.astro__moon-core::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #020617;
+  transform: scaleX(var(--moon-cover));
+  transform-origin: left center;
+  transition:
+    transform 0.35s ease-out,
+    transform-origin 0.35s ease-out;
+}
+
+/* Dirección de la sombra: creciente (tapa por la derecha) */
+
+.astro__moon-circle.moon--waning .astro__moon-core::before {
+  transform-origin: right center;
+}
+
+/* Pequeño halo exterior suave */
+
+.astro__moon-core::after {
+  content: '';
+  position: absolute;
+  inset: -10%;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle, rgba(248, 250, 252, 0.0) 40%, rgba(148, 163, 184, 0.18) 70%, transparent 80%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Textos de la luna */
+
+.astro__moon-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.astro__moon-title {
+  font-size: 1.25rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.astro__moon-phase {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.astro__moon-illum {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+/* Items de la parte derecha */
+
+.astro__item {
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1.2rem;
+  background: rgba(22, 38, 58, 0.95);
+  border: 1px solid rgba(42, 68, 99, 0.85);
+  cursor: default;
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    background 0.15s ease-out,
+    border-color 0.15s ease-out;
+}
+
+.astro__item:hover {
+  transform: translateY(-1px);
+  background: rgba(30, 48, 80, 0.98);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+  border-color: rgba(59, 130, 246, 0.7);
+}
+
+.astro__label {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.astro__value {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+  .home-card--astro {
+    padding-inline: 1.6rem;
+  }
+
+  .astro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .astro__right {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .astro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Tarjetas que quieres que parezcan interactivas pero sin pointer */
+.week-day,
+.today-item,
+.meta-item {
+  cursor: default; /* 👈 importante */
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    background 0.15s ease-out,
+    border-color 0.15s ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .week-day:hover,
+  .today-item:hover,
+  .meta-item:hover,
+  .astro__item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    background: rgba(24, 38, 60, 0.98);
+    border-color: rgba(113, 166, 255, 0.7);
+  }
+}

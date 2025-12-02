@@ -1,2 +1,432 @@
+<div class="home">
+  <div class="contenedor home__inner">
 
-<p>Home works!</p>    
+    <!-- ESTADO CARGANDO -->
+    <div *ngIf="loading" class="home__loading">
+      <div class="home-card home-card--main home-card--skeleton">
+        <div class="skeleton skeleton__title"></div>
+        <div class="skeleton skeleton__temp"></div>
+        <div class="skeleton skeleton__row"></div>
+      </div>
+    </div>
+
+    <!-- ESTADO ERROR -->
+    <div *ngIf="!loading && error" class="home__error">
+      <div class="home-card home-card--error">
+        <i class="bi bi-exclamation-triangle"></i>
+        <p>{{ error }}</p>
+      </div>
+    </div>
+
+    <!-- ESTADO SIN CIUDAD / SIN DATOS -->
+    <div *ngIf="!loading && !error && !weather" class="home__empty">
+      <div class="home-card home-card--empty">
+        <i class="bi bi-geo-alt"></i>
+        <p>
+          Detectando tu ubicación... Si tarda demasiado, revisa los permisos de localización.
+        </p>
+      </div>
+    </div>
+
+    <!-- ESTADO NORMAL (DATOS CARGADOS) -->
+    <div *ngIf="!loading && !error && weather" class="home__grid">
+
+      <!-- CARD PRINCIPAL -->
+      <section class="home-card home-card--main">
+        <div class="home-card__header">
+          <div class="home-card__location">
+            <div class="home-card__location-text">
+              <span class="home-card__city">
+                {{ weather.city }} <span class="home-card__sub-city"
+                  *ngIf="weather.realCity">({{weather.realCity}})</span>
+
+                <br>
+                <span *ngIf="weather.elevation !== undefined" class="home-card__altitude">
+                  {{ weather.elevation | number: '1.0-0' }} m ·
+                </span>
+
+                <span *ngIf="weather.country" class="home-card__country">
+                  {{ weather.country }}
+                </span>
+
+              </span>
+
+              <span class="home-card__subtitle">
+                Actualizado a las {{ getPrettyTime(weather.timestamp) }}
+              </span>
+            </div>
+          </div>
+
+
+          <div class="home-card__icon">
+            <i class="bi" [ngClass]="getWeatherIcon()"></i>
+            <span class="home-card__description">
+              {{ weather.description }}
+            </span>
+          </div>
+        </div>
+
+        <div class="home-card__body">
+          <div class="home-card__temp-block">
+            <span class="temp-main">
+              {{ weather.temperature | number: '1.0-1' }}°C
+            </span>
+            <span class="temp-feels">
+              Sensación {{ weather.feelsLike | number: '1.0-1' }}°C
+            </span>
+          </div>
+
+          <div class="home-card__meta">
+            <div class="meta-item">
+              <span class="meta-label">Humedad</span>
+              <span class="meta-value">
+                <i class="bi bi-droplet-half"></i>
+                {{ weather.humidity }}%
+              </span>
+            </div>
+
+            <div class="meta-item">
+              <span class="meta-label">Viento</span>
+              <span class="meta-value">
+                <i class="bi bi-wind"></i>
+                {{ weather.windSpeed }} km/h
+              </span>
+            </div>
+
+            <div class="meta-item">
+              <span class="meta-label">Presión</span>
+              <span class="meta-value">
+                <i class="bi bi-speedometer2"></i>
+                {{ weather.pressure }} hPa
+              </span>
+            </div>
+
+            <div class="meta-item" *ngIf="weather.dailyMin?.length && weather.dailyMax?.length">
+              <span class="meta-label">Hoy</span>
+              <span class="meta-value">
+                <i class="bi bi-thermometer-half"></i>
+                {{ weather.dailyMax![0] | number: '1.0-0' }}° /
+                {{ weather.dailyMin![0] | number: '1.0-0' }}°C
+              </span>
+            </div>
+
+            <!-- NUBOSIDAD -->
+            <!--<div class="meta-item" *ngIf="weather.cloudCover !== undefined">
+              <span class="meta-label">Nubosidad</span>
+              <span class="meta-value">
+                <i class="bi bi-cloud-fill"></i>
+                {{ weather.cloudCover }}%
+              </span>
+            </div>-->
+
+            <!-- ÍNDICE UV MÁXIMO -->
+            <!--<div class="meta-item" *ngIf="weather.uvIndexMax !== undefined">
+              <span class="meta-label">Índice UV máx.</span>
+              <span class="meta-value">
+                <i class="bi bi-sun"></i>
+                {{ weather.uvIndexMax | number: '1.0-1' }}
+              </span>
+            </div>-->
+
+            <!-- LLUVIA ACUMULADA HOY -->
+            <!--<div class="meta-item" *ngIf="weather.precipitationSum !== undefined">
+              <span class="meta-label">Lluvia hoy</span>
+              <span class="meta-value">
+                <i class="bi bi-umbrella"></i>
+                {{ weather.precipitationSum | number: '1.0-1' }} mm
+              </span>
+            </div>-->
+
+            <!-- PROBABILIDAD MÁXIMA DE LLUVIA HOY -->
+            <!--<div class="meta-item" *ngIf="weather.precipitationProbabilityMax !== undefined">
+              <span class="meta-label">Prob. lluvia</span>
+              <span class="meta-value">
+                <i class="bi bi-droplet"></i>
+                {{ weather.precipitationProbabilityMax }}%
+              </span>
+            </div>-->
+
+          </div>
+          <div class="home-card__weekly-header">
+            <div>
+              <h2 class="home-card__weekly-title">Próximos días</h2>
+              <p class="home-card__weekly-subtitle">
+                Resumen de temperatura máxima y mínima para la próxima semana.
+              </p>
+            </div>
+          </div>
+
+          <div class="home-card__weekly-scroll">
+            <article class="week-day" *ngFor="let day of weeklyForecast" [class.week-day--today]="day.isToday">
+              <div class="week-day__top">
+                <span class="week-day__label">{{ day.label | titlecase }}</span>
+                <span class="week-day__date" *ngIf="!day.isToday">
+                  {{ day.date | date: 'dd/MM' }}
+                </span>
+              </div>
+
+              <div class="week-day__temps">
+                <span class="week-day__max">
+                  {{ day.max | number: '1.0-0' }}°
+                </span>
+                <span class="week-day__min">
+                  {{ day.min | number: '1.0-0' }}°
+                </span>
+              </div>
+
+              <div class="week-day__bar">
+                <div class="week-day__bar-inner"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD SECUNDARIA: SALIDA / PUESTA DE SOL -->
+      <section class="home-card home-card--secondary">
+        <h2 class="sun-title">Salida y puesta de sol</h2>
+        <div class="home-card__row">
+          <div class="sun-block">
+            <div class="sun-block__icon sun-block__icon--sunrise">
+              <i class="bi bi-sunrise"></i>
+            </div>
+            <div class="sun-block__info">
+              <span class="sun-block__label">Amanecer</span>
+              <span class="sun-block__time">
+                {{ getPrettyTime(weather.sunrise) }}
+              </span>
+            </div>
+          </div>
+
+          <div class="sun-block">
+            <div class="sun-block__icon sun-block__icon--sunset">
+              <i class="bi bi-sunset"></i>
+            </div>
+            <div class="sun-block__info">
+              <span class="sun-block__label">Atardecer</span>
+              <span class="sun-block__time">
+                {{ getPrettyTime(weather.sunset) }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <p class="home-card__hint">
+          Horarios locales para hoy en {{ weather.city }}.
+        </p>
+      </section>
+
+      <!-- CARD SECUNDARIA: RAW / DEBUG (SI QUIERES VER TODO LO QUE VIENE) -->
+      <!--<section class="home-card home-card--secondary home-card--raw">
+        <div class="home-card__row--title">
+          <span class="home-card__raw-title">
+            Datos avanzados (raw)
+          </span>
+          <span class="home-card__raw-tag">debug</span>
+        </div>
+        <pre class="home-card__raw-json">
+            {{ weather.raw | json }}
+        </pre>
+      </section>-->
+
+
+      <!-- CARD SECUNDARIA: INDICADORES DEL DÍA -->
+      <section class="home-card home-card--secondary home-card--today" *ngIf="weather">
+
+        <h2 class="today-title">Indicadores del día</h2>
+
+        <div class="today-grid">
+          <!-- UV -->
+          <div class="today-item today-item--uv">
+            <div class="today-item__header">
+              <i class="bi bi-sun"></i>
+              <span class="today-item__label">Índice UV máx.</span>
+            </div>
+            <div class="today-item__value-row">
+              <span class="today-item__value">
+                {{ weather.uvIndexMax ?? '-' }}
+              </span>
+              <span class="today-item__badge">
+                {{ getUvLabel() }}
+              </span>
+            </div>
+            <div class="today-item__bar">
+              <div class="today-item__bar-inner" [style.width]="(weather.uvIndexMax || 0) / 11 * 100 + '%'"></div>
+            </div>
+          </div>
+
+          <!-- Probabilidad de lluvia -->
+          <div class="today-item today-item--rain-chance">
+            <div class="today-item__header">
+              <i class="bi bi-cloud-rain"></i>
+              <span class="today-item__label">Prob. lluvia</span>
+            </div>
+            <div class="today-item__value-row">
+              <span class="today-item__value">
+                {{ weather.precipitationProbabilityMax ?? 0 }}%
+              </span>
+              <span class="today-item__badge">
+                {{ getRainChanceLabel() }}
+              </span>
+            </div>
+            <div class="today-item__bar">
+              <div class="today-item__bar-inner today-item__bar-inner--rain"
+                [style.width]="(weather.precipitationProbabilityMax || 0) + '%'"></div>
+            </div>
+          </div>
+
+          <!-- Lluvia acumulada -->
+          <div class="today-item today-item--rain-sum">
+            <div class="today-item__header">
+              <i class="bi bi-droplet"></i>
+              <span class="today-item__label">Lluvia hoy</span>
+            </div>
+            <div class="today-item__value-row">
+              <span class="today-item__value">
+                {{ (weather.precipitationSum ?? 0) | number:'1.0-1' }} mm
+              </span>
+              <span class="today-item__badge today-item__badge--soft">
+                Acumulado
+              </span>
+            </div>
+          </div>
+
+          <!-- Nubosidad -->
+          <div class="today-item today-item--clouds" *ngIf="weather.cloudCover !== undefined">
+            <div class="today-item__header">
+              <i class="bi bi-clouds"></i>
+              <span class="today-item__label">Nubosidad</span>
+            </div>
+            <div class="today-item__value-row">
+              <span class="today-item__value">
+                {{ weather.cloudCover }}%
+              </span>
+              <span class="today-item__badge today-item__badge--soft">
+                Cielo
+              </span>
+            </div>
+            <div class="today-item__bar">
+              <div class="today-item__bar-inner today-item__bar-inner--clouds"
+                [style.width]="(weather.cloudCover || 0) + '%'"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="home-card__hint">
+          Indicadores diarios para {{ weather.city }}: radiación solar, lluvia y nubosidad.
+        </p>
+      </section>
+
+      <!-- CARD SECUNDARIA: RAW / DEBUG (OCULTA EN PRODUCCIÓN) -->
+      <!--
+      <section class="home-card home-card--secondary home-card--raw">
+        <div class="home-card__row--title">
+          <span class="home-card__raw-title">
+            Datos avanzados (raw)
+          </span>
+          <span class="home-card__raw-tag">debug</span>
+        </div>
+        <pre class="home-card__raw-json">
+            {{ weather.raw | json }}
+        </pre>
+      </section>
+      -->
+
+
+      <!-- 🔥 NUEVA SECCIÓN: PRONÓSTICO SEMANAL A ANCHO COMPLETO -->
+      <!--<section *ngIf="!loading && !error && weather && weeklyForecast.length" class="home-card home-card--weekly">
+        <div class="home-card__weekly-header">
+          <div>
+            <h2 class="home-card__weekly-title">Próximos días</h2>
+            <p class="home-card__weekly-subtitle">
+              Resumen de temperatura máxima y mínima para la próxima semana.
+            </p>
+          </div>
+        </div>
+
+        <div class="home-card__weekly-scroll">
+          <article class="week-day" *ngFor="let day of weeklyForecast" [class.week-day--today]="day.isToday">
+            <div class="week-day__top">
+              <span class="week-day__label">{{ day.label | titlecase }}</span>
+              <span class="week-day__date" *ngIf="!day.isToday">
+                {{ day.date | date: 'dd/MM' }}
+              </span>
+            </div>
+
+            <div class="week-day__temps">
+              <span class="week-day__max">
+                {{ day.max | number: '1.0-0' }}°
+              </span>
+              <span class="week-day__min">
+                {{ day.min | number: '1.0-0' }}°
+              </span>
+            </div>
+
+            <div class="week-day__bar">
+              <div class="week-day__bar-inner"></div>
+            </div>
+          </article>
+        </div>
+      </section>-->
+
+    </div>
+
+    <!-- 🌙 SECCIÓN ASTRONÓMICA: FASE LUNAR + DURACIONES -->
+    <section class="home-card home-card--astro" *ngIf="weather">
+      <div class="astro">
+        <div class="astro__left">
+          <div class="astro__moon-wrapper">
+            <!-- 🔵 Luna “real” con máscara dinámica -->
+            <div class="astro__moon-circle" [ngClass]="getMoonPhaseDirectionClass()"
+              [style.--moon-cover]="getMoonCover()">
+              <div class="astro__moon-core"></div>
+            </div>
+
+            <div class="astro__moon-text">
+              <span class="astro__moon-title">Cielo nocturno</span>
+              <span class="astro__moon-phase">
+                {{ weather.moonPhaseLabel }}
+              </span>
+              <span class="astro__moon-illum">
+                Iluminación aproximada: {{ getMoonIllumination() }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="astro__right">
+          <div class="astro__item">
+            <span class="astro__label">Horas de luz</span>
+            <span class="astro__value">
+              {{ weather.daylightDurationLabel || '—' }}
+            </span>
+          </div>
+
+          <div class="astro__item" *ngIf="weather.sunshineDurationLabel">
+            <span class="astro__label">Sol efectivo</span>
+            <span class="astro__value">
+              {{ weather.sunshineDurationLabel }}
+            </span>
+          </div>
+
+          <!-- Si más adelante añades moonrise / moonset del backend:
+      <div class="astro__item" *ngIf="weather.moonrise">
+        <span class="astro__label">Salida de la luna</span>
+        <span class="astro__value">
+          {{ getPrettyTime(weather.moonrise) }}
+        </span>
+      </div>
+
+      <div class="astro__item" *ngIf="weather.moonset">
+        <span class="astro__label">Puesta de la luna</span>
+        <span class="astro__value">
+          {{ getPrettyTime(weather.moonset) }}
+        </span>
+      </div>
+      -->
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

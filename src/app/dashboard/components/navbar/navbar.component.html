@@ -53,7 +53,13 @@
         <!-- Ciudad -->
         <button class="btn-ghost">
           <i class="bi bi-geo-alt"></i>
-          <span>{{ locationService.city }}</span>
+          <span *ngIf="city$ | async as city; else loading">
+            <strong>{{ city }}</strong>
+          </span>
+
+          <ng-template #loading>
+            <div class="mini-spinner"></div>
+          </ng-template>
         </button>
 
         <!-- Botón modo/tema (placeholder) -->
